@@ -1,6 +1,7 @@
 package hu.petrik.sendvicsek;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -38,6 +39,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         onCreate(db);
     }
-
+    public Cursor listaz() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_NAME, new String[]{COL_ID,COL_NEV,COL_LEIRAS,COL_ELKESZITES,COL_AR},
+                null,null,null,null,null,null);
+    }
 
 }
